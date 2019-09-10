@@ -1,0 +1,10 @@
+.git
+.idea
+.logs
+.pytest_cache
+frontend
+tests
+Pipfile
+Pipfile.lock
+*.pyc
+*.pyo
