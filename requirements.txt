@@ -2,3 +2,4 @@ flask-cors==3.0.8
 flask==1.1.1
 gevent==1.4.0
 gunicorn==19.9.0
+pymongo==3.9.0
