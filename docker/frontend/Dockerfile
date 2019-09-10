@@ -1,4 +1,4 @@
-FROM node:carbone
+FROM node:carbon
 
 WORKDIR /app
 
