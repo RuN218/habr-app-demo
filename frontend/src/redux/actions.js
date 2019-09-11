@@ -1,3 +1,6 @@
+import {isServerSide} from "../utility";
+import fetch from "cross-fetch";
+
 export const START_FETCHING_CARD = "START_FETCHING_CARD";
 export const FINISH_FETCHING_CARD = "FINISH_FETCHING_CARD";
 export const NAVIGATE = "NAVIGATE";
@@ -35,11 +38,14 @@ function finishFetchingCard(json) {
 }
 
 function apiPath() {
+  if (isServerSide()) {
+    return "http://backend:40001/api/v1";
+  }
   return "http://localhost:40001/api/v1";
 }
 
 export function navigate(link, dontPushState) {
-  if (!dontPushState) {
+  if (!isServerSide() && !dontPushState) {
     history.pushState({
       pathname: link.pathname,
       href: link.href

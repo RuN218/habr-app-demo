@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/RuN218/habr-app-demo#readme",
   "dependencies": {
+    "cross-fetch": "^3.0.4",
     "@babel/core": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
