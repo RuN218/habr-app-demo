@@ -6,7 +6,11 @@ import App from "./components/app";
 import {navigate} from "./redux/actions";
 import configureStore from "./redux/configureStore";
 
-export default function render(initialState, url) {
+function hasPromises(state) {
+  return state.promises.length > 0
+}
+
+export default async function render(initialState, url) {
   const store = configureStore(initialState);
   store.dispatch(navigate(url));
 
@@ -16,8 +20,14 @@ export default function render(initialState, url) {
     </Provider>
   );
 
-  let content = renderToString(app);
+  renderToString(app);
   let preloadedState = store.getState();
+  while (hasPromises(preloadedState)) {
+    await preloadedState.promises[0];
+    preloadedState = store.getState()
+  }
+
+  let content = renderToString(app);
 
   return {content, preloadedState};
 };
